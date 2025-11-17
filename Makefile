@@ -1,14 +1,14 @@
 .PHONY: init plan apply destroy
-BIRD_ENV=github-creds
+GITHUB_ENV=github-creds
 init:
 	terraform init
-	terraform workspace select -or-create ${BIRD_ENV}
+	terraform workspace select -or-create ${GITHUB_ENV}
 
 plan: init
-	terraform plan -var-file=${BIRD_ENV}.tfvars
+	terraform plan -var-file=${GITHUB_ENV}.tfvars
 
 apply: init
-	terraform apply -var-file=${BIRD_ENV}.tfvars -auto-approve
+	terraform apply -var-file=${GITHUB_ENV}.tfvars -auto-approve
 
 destroy: init
-	terraform destroy -var-file=${BIRD_ENV}.tfvars -auto-approve
+	terraform destroy -var-file=${GITHUB_ENV}.tfvars -auto-approve
